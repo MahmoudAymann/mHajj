@@ -78,33 +78,6 @@ public class AvatarFragment extends Fragment {
         // Inflate the layout for this fragment
         myFragment = inflater.inflate(R.layout.fragment_avatar, container, false);
 
-        img1 = myFragment.findViewById(R.id.iv_1);
-        img2 = myFragment.findViewById(R.id.iv_2);
-        img3 = myFragment.findViewById(R.id.iv_3);
-
-//        img1.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.rotate));
-        img2.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.rotate));
-//        img3.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.rotate));
-
-
-        ObjectAnimator animation = ObjectAnimator.ofFloat(img1, "rotationY", 0.0f, 360f);
-        animation.setDuration(1200);
-        animation.setRepeatCount(ObjectAnimator.INFINITE);
-        animation.setInterpolator(new AccelerateDecelerateInterpolator());
-        animation.start();
-
-//        ObjectAnimator animation2 = ObjectAnimator.ofFloat(img2, "rotationY", 0.0f, 360f);
-//        animation2.setDuration(1200);
-//        animation2.setRepeatCount(ObjectAnimator.INFINITE);
-//        animation2.setInterpolator(new AccelerateDecelerateInterpolator());
-//        animation2.start();
-
-        ObjectAnimator animation3 = ObjectAnimator.ofFloat(img3, "rotationY", 0.0f, 360f);
-        animation3.setDuration(1200);
-        animation3.setRepeatCount(ObjectAnimator.INFINITE);
-        animation3.setInterpolator(new AccelerateDecelerateInterpolator());
-        animation3.start();
-
         return myFragment;
     }
 
@@ -119,20 +92,6 @@ public class AvatarFragment extends Fragment {
         super.onAttach(context);
     }
 
-    public void hideQMarks(){
-        img1.setVisibility(View.GONE);
-        img2.setVisibility(View.GONE);
-        img3.setVisibility(View.GONE);
-    }
-
-    public void showQMarks(){
-
-
-
-        img1.setVisibility(View.VISIBLE);
-        img2.setVisibility(View.VISIBLE);
-        img3.setVisibility(View.VISIBLE);
-    }
 
     @Override
     public void onDetach() {
