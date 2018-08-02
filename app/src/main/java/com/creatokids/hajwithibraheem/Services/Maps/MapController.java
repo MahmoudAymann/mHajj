@@ -1,5 +1,6 @@
 package com.creatokids.hajwithibraheem.Services.Maps;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +23,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.GeoDataClient;
 import com.google.android.gms.location.places.PlaceDetectionClient;
+import com.google.android.gms.location.places.PlaceLikelihood;
 import com.google.android.gms.location.places.PlaceLikelihoodBufferResponse;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -230,39 +232,39 @@ public class MapController {
 
                                 // Set the count, handling cases where less than 5 entries are returned.
                                 int count;
-//                                if (likelyPlaces.getCount() < M_MAX_ENTRIES) {
-//                                    count = likelyPlaces.getCount();
-//                                } else {
-//                                    count = M_MAX_ENTRIES;
-//                                }
+                                if (likelyPlaces.getCount() < M_MAX_ENTRIES) {
+                                    count = likelyPlaces.getCount();
+                                } else {
+                                    count = M_MAX_ENTRIES;
+                                }
 
                                 int i = 0;
-//                                mLikelyPlaceNames = new String[count];
-//                                mLikelyPlaceAddresses = new String[count];
-//                                mLikelyPlaceAttributions = new String[count];
-//                                mLikelyPlaceLatLngs = new LatLng[count];
+                                mLikelyPlaceNames = new String[count];
+                                mLikelyPlaceAddresses = new String[count];
+                                mLikelyPlaceAttributions = new String[count];
+                                mLikelyPlaceLatLngs = new LatLng[count];
+//
+                                for (PlaceLikelihood placeLikelihood : likelyPlaces) {
 
-//                                for (PlaceLikelihood placeLikelihood : likelyPlaces) {
-//
 //                                     Build a list of likely places to show the user.
-//                                    mLikelyPlaceNames[i] = (String) placeLikelihood.getPlace().getName();
-//                                    mLikelyPlaceAddresses[i] = (String) placeLikelihood.getPlace().getAddress();
-//                                    mLikelyPlaceAttributions[i] = (String) placeLikelihood.getPlace().getAttributions();
-//                                    mLikelyPlaceLatLngs[i] = placeLikelihood.getPlace().getLatLng();
-//
-//                                    logMessage(TAG, mLikelyPlaceNames[i]);
-//                                    logMessage(TAG, mLikelyPlaceAddresses[i]);
-//                                    logMessage(TAG, mLikelyPlaceAttributions[i]);
-//                                    logMessage(TAG, mLikelyPlaceLatLngs[i].toString());
-//
-//                                    i++;
-//                                    if (i > (count - 1)) {
-//                                        break;
-//                                    }
-//                                }
-//
+                                    mLikelyPlaceNames[i] = (String) placeLikelihood.getPlace().getName();
+                                    mLikelyPlaceAddresses[i] = (String) placeLikelihood.getPlace().getAddress();
+                                    mLikelyPlaceAttributions[i] = (String) placeLikelihood.getPlace().getAttributions();
+                                    mLikelyPlaceLatLngs[i] = placeLikelihood.getPlace().getLatLng();
+
+                                    logMessage(TAG, mLikelyPlaceNames[i]);
+                                    logMessage(TAG, mLikelyPlaceAddresses[i]);
+                                    logMessage(TAG, mLikelyPlaceAttributions[i]);
+                                    logMessage(TAG, mLikelyPlaceLatLngs[i].toString());
+
+                                    i++;
+                                    if (i > (count - 1)) {
+                                        break;
+                                    }
+                                }
+
 //                                 Release the place likelihood buffer, to avoid memory leaks.
-//                                likelyPlaces.release();
+                                likelyPlaces.release();
 
                                 // Show a dialog offering the user the list of likely places, and add a
                                 // marker at the selected place.
@@ -317,10 +319,10 @@ public class MapController {
         };
 
         // Display the dialog.
-//        AlertDialog dialog = new AlertDialog.Builder(mActivity)
-//                .setTitle(R.string.pick_place)
-//                .setItems(mLikelyPlaceNames, listener)
-//                .show();
+        AlertDialog dialog = new AlertDialog.Builder(mActivity)
+                .setTitle(R.string.pick_place)
+                .setItems(mLikelyPlaceNames, listener)
+                .show();
     }
 
     public void loadNearByPlaces(double latitude, double longitude){
