@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "jacklab-creatokids",
+  "private_key_id": "1504c889839145e62986bd17a653f22dec1a9893",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDIRy6xnn9noqbb\nV7Yau37Mqz2Tgbw71pcvg2EmxImiE8wUcsDQU4wm6269QM912ASLugM1jCfAjZ1Q\n4aubu7u3WscWOdP9jYiGzQCEigSfXfcYtvg3+GOEOZhfDsflmffX9O2YCIFvtUk/\nn/eDsceFmF8FWNPvnHu+tUywvPetNP6LWMCAwxVvV6txjHKEdERClqdHGl7+DAIl\nVEDidgRINoxrWV8tEut92xLPIvbzD70pp1tuC7el+zAHscrNoazgILonFbFiTpho\n48EUFh9Qz7AvPcHPGCcrnsIDUZSrvwR2UUevL6qYEAiWLz3qxpm0AP7iFAETEgWp\n14lX2PZtAgMBAAECggEABTCltXVNsz9+zXOsxMKTxaAGZ3qBiJdwsYrZC1UlL+24\nEyuUyDvyB4GAYX0leICm6ta2MJQM5QDb0SBtVGAoEYH+Y3APiKQ7ToBPgXUbgORs\nJoLPVJFQ8DiXNJdrIg28Y3ygZO6LftFBha7n43d0RoetUV587NpZm+vngd5Tw3RE\nCla9k7ReHAKg2gcShmmgReF1rjUXRYzdMMU1VO0F9HdxlqvP6iCzS68r9TbLAPw9\n87U0qVxHUCHDhQVB3i8rMvXhI9bw3RMHx3PW88ClqSzy3OwxualoZT3QBwpbhfSv\n8h9BQi8UhtlaoHecjpiq6s72zJ6rcHuR6nltrxdebQKBgQDqPfW9kbirBtVi7Lqs\nP5Z+X4/FhoJdKRzkRLHyGtv95l6uRFQwO16l+uQhI1W+fz6413FyatX5zmxry3iQ\n4TYAhcMr2gqb2HvAyy6PBNuaMtIa76m/4YP9ShNGyx5CDeD+e5lSfAIe1e+7max5\nOaFbJ/30b/uyZQoJA5u7fIqvIwKBgQDa4Zfh2wBLTLZok7QYv75d5y/yvDTmwN2e\nwvq5YUyDq6TPaclAvXTy5ofa88pfujkvVrV6SXZBbEW2TK/5Clx920h86H18vXEJ\nYvpsQTudAqpr0Lpys0YsmM74c/wRgHEoEw6slFoBpQB5VGd7QI/jVII4e58BlJsL\nkMb1uS5lLwKBgDBsVpy1vyM76mjk30I0cvv07Ve8Er8HfL2DpfWSr9+w++mynmTK\nISrWzso678LNsz2q6/znMQzPK4KtMWNh6zP4cvxhuse03QBiAGH4cx1RXDXNTZ4p\nFIwMACgmXT7yd4ykKHHwyM9vEnwJrKnyy/R4M/uQGswqLwTmBg+gE1tZAoGANqqB\nNHdt62CNbjD1mfjJospKv2UiET+6Ghy4YfRbF8eWsfbJvNGUk9XfuF+K+72W6qvN\nR21xi4VvI8ijap+b2hMaV5f5P15RDPcbdE4WhXBU//hxmJQNwrWne4X8PqLFoCyi\nTZf/osmDBMp/zdiiFzTUESdO3yYuUwUlq9lELSECgYBRcnhcDYHvg/HSEnA/CEFP\n970Sii2H6n3dFmeTVvHmvTGj8u2fSjfIvz8xLy04BGHzpatq4v3UBpiN0sUOgRrW\nMj4zlHxiSO6nLaEz4kPapHE+aNsSk9Y1clgnSER4IpoBrtTuv3yugSQ2+TU0W+l+\nRwVg87VR9FY0L9Kqs3XrTw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "jacklab-stt@jacklab-creatokids.iam.gserviceaccount.com",
+  "client_id": "114413112720082882037",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jacklab-stt%40jacklab-creatokids.iam.gserviceaccount.com"
+}

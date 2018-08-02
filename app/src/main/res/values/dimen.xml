@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="chat_text_input_height">48dp</dimen>
+    <dimen name="chat_text_input_padding">5dp</dimen>
+    <dimen name="padding_top_text_input">8dp</dimen>
+    <dimen name="padding_start_text_input">16dp</dimen>
+    <dimen name="padding_bottom_text_input">8dp</dimen>
+    <dimen name="margin_mcq_btn">4dp</dimen>
+    <dimen name="btn_mcq_width">75dp</dimen>
+    <dimen name="btn_yes_no_width">100dp</dimen>
+    <dimen name="board_mcq_height">75dp</dimen>
+    <dimen name="padding_tv_chat_raw">30dp</dimen>
+    <dimen name="margin_frame">10dp</dimen>
+    <dimen name="gl_chat_main">64dp</dimen>
+</resources>
