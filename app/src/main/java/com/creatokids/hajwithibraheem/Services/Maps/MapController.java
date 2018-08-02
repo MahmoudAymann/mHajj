@@ -137,6 +137,7 @@ public class MapController {
     public void updateCurrentLocation(){
         mLastKnownLocation = getCurrentLocation();
     }
+
     public Location getDeviceLocation(GoogleMap pMap) {
         mGoogleMap = pMap;
         /*
