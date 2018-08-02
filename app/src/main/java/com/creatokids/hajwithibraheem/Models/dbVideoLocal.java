@@ -36,6 +36,15 @@ public class dbVideoLocal implements IMix {
         isThinking = false;
     }
 
+    public dbVideoLocal(String pFrom, String pUrl, boolean hasSoundFile, String pContent) {
+        mFrom = pFrom;
+        mURL = pUrl;
+        mContent = pContent;
+        if (hasSoundFile) mType = mixType.videoLocalWithSound;
+        else mType = mixType.videoLocalWithText;
+        isThinking = false;
+    }
+
     @Override
     public boolean isThinking() {
         return isThinking;
@@ -54,6 +63,12 @@ public class dbVideoLocal implements IMix {
     public String getURL() {
         return mURL;
     }
+
+    @Override
+    public String getSoundURL() {
+        return null;
+    }
+
     @Override
     public void setURL(String pURL) {
         this.mURL = pURL;

@@ -100,6 +100,7 @@ public class GlobalVars {
         videoYoutube,
         videoURL,
         videoURLWithText,
+        videoLocalWithSound,
         videoLocal,
         videoLocalWithText,
         simulation,
@@ -111,6 +112,7 @@ public class GlobalVars {
     public enum nextIs {
         none,
         newItem,
+        playSound,
         askingUser,
         userAnswer,
         feedback,

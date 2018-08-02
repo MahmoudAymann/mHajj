@@ -36,6 +36,11 @@ public class dbMap implements IMix {
     }
 
     @Override
+    public String getSoundURL() {
+        return null;
+    }
+
+    @Override
     public String getFrom() {
         return null;
     }

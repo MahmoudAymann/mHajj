@@ -164,6 +164,9 @@ public class ChatActivity extends AppCompatActivity {
     public void replaceFragment(@NonNull GlobalVars.mixType mixType, @Nullable Bundle data, String from) {
         logMessage(TAG, "From: " + from + "Using new replace fragment ...");
         // Update the current view on screen.
+        if (mixType == null || mixType == Current_VIEW_ON_SCREEN){
+            return;
+        }
         Current_VIEW_ON_SCREEN = mixType;
         myFragment = null;
         if (data == null){
@@ -184,6 +187,7 @@ public class ChatActivity extends AppCompatActivity {
             case videoLocal:
             case videoLocalWithText:
             case videoURL:
+            case videoLocalWithSound:
             case videoURLWithText:
                 // the name of initialization intent
                 data.putString("initIntent", initIntent);

@@ -41,6 +41,11 @@ public class dbSimulation implements IMix {
     }
 
     @Override
+    public String getSoundURL() {
+        return null;
+    }
+
+    @Override
     public void setURL(String mURL) {
         this.mURL = mURL;
     }

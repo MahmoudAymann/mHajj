@@ -57,6 +57,11 @@ public class dbImageOnline implements IMix {
     }
 
     @Override
+    public String getSoundURL() {
+        return null;
+    }
+
+    @Override
     public String getFrom() {
         return mFrom;
     }

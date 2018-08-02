@@ -37,6 +37,8 @@ public class dbVideoURL implements IMix {
         isThinking = true;
     }
 
+
+
     @Override
     public boolean isThinking() {
         return isThinking;
@@ -55,6 +57,12 @@ public class dbVideoURL implements IMix {
     public String getURL() {
         return mURL;
     }
+
+    @Override
+    public String getSoundURL() {
+        return null;
+    }
+
     @Override
     public void setURL(String pURL) {
         this.mURL = pURL;

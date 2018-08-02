@@ -180,7 +180,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         super.onResume();
 
         updateCurrentLocation();
-
+        loadNearbyPlaces();
         try {
             startActivityForResult(builder.build(mActivity), PLACE_PICKER_REQUEST);
 

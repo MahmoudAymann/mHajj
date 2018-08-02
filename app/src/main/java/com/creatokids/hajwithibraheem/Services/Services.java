@@ -14,6 +14,7 @@ import com.creatokids.hajwithibraheem.Global.MyNetwork;
 import com.creatokids.hajwithibraheem.Services.Chat.MyWatsonChat;
 import com.creatokids.hajwithibraheem.Services.Maps.MapController;
 import com.creatokids.hajwithibraheem.Services.STT.MySTT;
+import com.creatokids.hajwithibraheem.Services.Sound.SoundPlayer;
 import com.creatokids.hajwithibraheem.Services.TTS.MyTTS;
 import com.creatokids.hajwithibraheem.Services.WebSearch.MyWebSearch;
 
@@ -39,6 +40,8 @@ public class Services {
     private MyWebSearch webSearch;
     @NonNull
     private MapController mapController;
+    @NonNull
+    private SoundPlayer mySoundPlayer;
     // Network Handler
     private MyNetwork myNetwork;
 
@@ -56,8 +59,6 @@ public class Services {
     * Singleton class for the services layer to deal with all services TAG one place
     * */
     private static final Services ourInstance = new Services();
-
-
 
     @NonNull
     public static Services getInstance() {
@@ -124,6 +125,7 @@ public class Services {
         watson = new MyWatsonChat(pContext, from, intentName);
         initWebSearch(pContext, intentName);
         mapController = new MapController(pContext, pActivity);
+        mySoundPlayer = new SoundPlayer(mContext, intentName);
         // Register broadcast receiver
         LocalBroadcastManager.getInstance(pContext).registerReceiver(mMessageReceiver,
                 new IntentFilter(initIntent));
@@ -206,17 +208,43 @@ public class Services {
         tts.stopSpeaking();
     }
 
+    // =========== Sound Area =========== //
+    public void playSound(String soundURL){
+        if (mySoundPlayer == null){
+            logMessage(TAG, "playSound() -> mSoundPlayer is null");
+            return;
+        }
+        mySoundPlayer.play(soundURL);
+    }
+
+    public void stopSound(){
+        if (mySoundPlayer == null){
+            logMessage(TAG, "stopSound() -> mSoundPlayer is null");
+            return;
+        }
+        mySoundPlayer.stopPlayer();
+    }
+
+    public void killSound(){
+        if (mySoundPlayer == null){
+            logMessage(TAG, "killSound() -> mSoundPlayer is null");
+            return;
+        }
+        mySoundPlayer.killMediaPlayer();
+    }
+
+
     public void askWatson(@NonNull String question){
         if (watson == null){
             logMessage(TAG, "Watson service is null");
             return;
         }
-        if (!isTtsInitiated){
-            String msg = "Be patient! TTS is not initialized yet";
-            logMessage(TAG, msg);
+//        if (!isTtsInitiated){
+//            String msg = "Be patient! TTS is not initialized yet";
+//            logMessage(TAG, msg);
 //            showToast(mContext, msg);
-            return;
-        }
+//            return;
+//        }
         watson.ask(question);
     }
 
@@ -232,6 +260,7 @@ public class Services {
         }
         // TODO: 10/07/2018 Make a method that kill watson service connection
         watson = null;
+        killSound();
     }
 
     // ============== Broadcast Receiver Area ================ //

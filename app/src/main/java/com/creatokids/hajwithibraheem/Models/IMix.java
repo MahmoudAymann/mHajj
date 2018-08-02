@@ -13,6 +13,7 @@ public interface IMix extends Serializable {
     mixType getMixType();
 
     String getURL();
+    String getSoundURL();
     String getFrom();
     String getContent();
 

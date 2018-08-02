@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.creatokids.hajwithibraheem.Activities.ChatActivity;
@@ -292,15 +293,17 @@ public class MainChatController {
                     break;
                 case "iVideoEnded":
                 case "iYoutubeEnded":
+                case "iSoundComplete":
                 case "iYoutubeDestroyed":
                     // Call displayNext just in case the mix didn't has text needed to be spoken,
                     // Otherwise, The event speak is done is the main caller for this method.
                     if (mix.getMixType() == GlobalVars.mixType.videoLocal
                             || mix.getMixType() == GlobalVars.mixType.videoYoutube
+                            || mix.getMixType() == GlobalVars.mixType.videoLocalWithSound
                             || mix.getMixType() == GlobalVars.mixType.videoURL){
                         logMessage(TAG, "Mix type: " + mix.getMixType().toString());
-                        logMessage(TAG, "Video/Youtube Ended");
-                        displayNext( "Video/Youtube");
+                        logMessage(TAG, "Sound/Video/Youtube Ended");
+                        displayNext( "Sound/Video/Youtube");
                     }
                     break;
                 case "iGotSttText":
@@ -311,7 +314,7 @@ public class MainChatController {
                     logMessage(TAG, "View is Ready");
                     boolean isReady = intent.getBooleanExtra("ready", false);
                     // Display content to the user
-                    if (isReady) updateUserInputField(mix.getContent());
+//                    if (isReady) updateUserInputField(mix.getContent());
                     break;
                 case "iWebResult":
                 case "iGotWatsonRes":
@@ -436,6 +439,9 @@ public class MainChatController {
     }
 
     private void speakMixContent(GlobalVars.mixType mixType) {
+        if (mixType == null){
+            return;
+        }
         switch (mixType){
             case imageURL:
             case webResult:
@@ -464,8 +470,12 @@ public class MainChatController {
         mix = message.getContent();
         // Display the mix
         display(mix.getMixType(), null, "displayMessage");
-        // if the mix has text, Speak it.
-        speakMixContent(mix.getMixType());
+        if (mix.getMixType() == GlobalVars.mixType.videoLocalWithSound){
+            playAudio(mix.getContent()); // the content here is the
+        }else {
+            // if the mix has text, Speak it.
+            speakMixContent(mix.getMixType());
+        }
         logMessage(TAG, "***DisplayMessage: "
                 + MessageFormat.format("Mix type is: {0}, next is {1}, Content: {2}",
                 mix.getMixType().toString(),
@@ -539,6 +549,7 @@ public class MainChatController {
     }
 
     private void freeUserInput(String from) {
+        clearUserInputField();
         logMessage(TAG, "Free User input from: " + from);
         canAcceptUserInput = true;
         openMIC("freeUserInput(): inside if condition");
@@ -579,6 +590,31 @@ public class MainChatController {
         lockUserInput("gotUserAnswer");
         changeNext(GlobalVars.nextIs.feedback);
         displayNext("gotUserAnswer()", ans);
+    }
+
+    // ============ Audio Area ============== //
+
+    private void playAudio(String url){
+        if (mServices == null){
+            logMessage(TAG, "playAudio() -> mServices is null");
+            return;
+        }
+        mServices.playSound(url);
+    }
+
+    private void stopAudio(){
+        if (mServices == null){
+            logMessage(TAG, "stopAudio() -> mServices is null");
+            return;
+        }
+        mServices.stopSound();
+    }
+    private void killAudio(){
+        if (mServices == null){
+            logMessage(TAG, "stopAudio() -> mServices is null");
+            return;
+        }
+        mServices.killSound();
     }
 
     // ================== CHAT HANDLER CLASS ========== //
@@ -657,13 +693,23 @@ public class MainChatController {
                     url = itemParts[1];
                     // create an appropriate object, pass it to the chat message, set it to the object
                     msg.setContent(new dbImageOnline(from, url, content));
-                }else if (item.contains("<map>")) {
+//               /* Will be used to empower the user from asking for help: police, hospital ... etc
+                    /*Will be used to get which type of help he asks for, and the Map can guid him/her
+                     to the appropriate kind of help*/
+//              }else if (item.contains("<map>")) {
+                     //Split the line to its parts
+//                    item = "text" + item;
+//                    itemParts = item.split("<map>");
+//                    content = itemParts[1]; // the content here is the Location type == no url right here.
+                     //create an appropriate object, pass it to the chat message, set it to the object
+//                    msg.setContent(new dbMap(from, getCurrentLocation(), content));
+                }else if (item.contains("<snd>")) {
                     // Split the line to its parts
                     item = "text" + item;
-                    itemParts = item.split("<map>");
-                    content = itemParts[1]; // the content here is the Location type == no url right here.
+                    itemParts = item.split("<snd>");
+                    url = itemParts[1];
                     // create an appropriate object, pass it to the chat message, set it to the object
-                    msg.setContent(new dbMap(from, getCurrentLocation(), content));
+                    msg.setContent(new dbVideoLocal(from, dummyTalkPath, true, url));
                 }else if (item.contains("<vdo>")) {
                     // Split the line to its parts
                     item = "text" + item;
@@ -693,8 +739,14 @@ public class MainChatController {
                 }
                 // Add the message to the list of chat messages
                 list.add(msg);
-                // set the next pointer, points to new item
-                setNext(GlobalVars.nextIs.newItem);
+                // TODO: 02/08/2018 Haj
+                if (getNext() != GlobalVars.nextIs.playSound) // don't change the pointer reference if it refers to sound file
+                    // set the next pointer, points to new item
+                    setNext(GlobalVars.nextIs.newItem);
+                else {
+//                  set the next pointer, points to new item
+                    setNext(GlobalVars.nextIs.newItem);
+                }
             }
             return list;
         }
@@ -810,7 +862,29 @@ public class MainChatController {
                     // get the first item in list
                     currentMsg = list.get(0);
                     // TODO: 02/08/2018 Haj
+                    list.remove(0);
+                    setNext(GlobalVars.nextIs.playSound);
+                    /*
+                    // remove the retrieved item
+
+                    if (list.size() == 0){ // if no more messages suggest new topic
+                        // make the pointer points to the next step
+                        setNext(GlobalVars.nextIs.suggestNewTopic);
+                    }else { // if still has data, ask him for more explanation
+                        // make the pointer points to the next step
+                        setNext(GlobalVars.nextIs.askingUser);
+                    }
+                    */
+                    // update the next in the chat message
+                    currentMsg.setNext(getNext());
+                    // return the new message
+                    return currentMsg;
+                case playSound:
+                    // get the first item in list
+                    currentMsg = list.get(0);
+                    // TODO: 02/08/2018 Haj
                     setNext(GlobalVars.nextIs.none);
+                    list.remove(0);
                     /*
                     // remove the retrieved item
                     list.remove(0);
