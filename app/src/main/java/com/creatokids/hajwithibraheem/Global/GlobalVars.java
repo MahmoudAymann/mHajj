@@ -55,13 +55,14 @@ public class GlobalVars {
     public static final String dummyTalkPath = "android.resource://" + "com.creatokids.hajwithibraheem"
             + "/" + R.raw.avatar_video_1;
 
+    // TODO: 03/08/2018 Haj
     public static Location mLastKnownLocation;
 
 
 
     // ============ Global Lists =============== //
 
-    private static final int [] thinkingList = {R.raw.thinking, R.raw.thinking_book, R.raw.thinking_tab};
+    private static final int [] thinkingList = {1};
 
     @NonNull
     public static String thinkingPath = "android.resource://" + /*PackageName*/ "com.creatokids.hajwithibraheem" + "/" +

@@ -11,6 +11,11 @@ public class dbMap implements IMix {
     private GlobalVars.mixType mixType;
     private String mFrom;
 
+
+    // TODO: 03/08/2018 // ================  End of Haj Hackathon Code ================== //
+    // All the class
+    // TODO: 03/08/2018 // ================ Start of Haj Hackathon Code ================== //
+
     public dbMap(String pFrom, Location location, String locType){
         mixType = GlobalVars.mixType.map;
         mLocType = locType;

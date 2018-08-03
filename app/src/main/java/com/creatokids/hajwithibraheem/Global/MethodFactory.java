@@ -42,29 +42,6 @@ public class MethodFactory {
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
     }
 
-    public static void setIntToSharedPreferences(Context mContext, String key, int value) {
-        SharedPreferences shared = mContext.getSharedPreferences(mContext.getPackageName(), 0);
-        SharedPreferences.Editor editor = shared.edit();
-        editor.putInt(key, value);
-        editor.apply();
-    }
-
-    public static int getIntFromSharedPreferences(Context mContext, String key){
-        SharedPreferences sharedPrefs = mContext.getSharedPreferences(mContext.getPackageName(), 0);
-        return sharedPrefs.getInt(key, -1);
-    }
-
-    public static void setBoolToSharedPreferences(Context mContext, String key, boolean value) {
-        SharedPreferences shared = mContext.getSharedPreferences(mContext.getPackageName(), 0);
-        SharedPreferences.Editor editor = shared.edit();
-        editor.putBoolean(key, value);
-        editor.apply();
-    }
-
-    public static boolean getBoolFromSharedPreferences(Context mContext, String key){
-        SharedPreferences sharedPrefs = mContext.getSharedPreferences(mContext.getPackageName(), 0);
-        return sharedPrefs.getBoolean(key, false);
-    }
 
     public static void makeRequest(@NonNull Activity activity, String permission) {
         try {
@@ -90,16 +67,6 @@ public class MethodFactory {
 
     }
 
-    public static void openMarket(Context context) {
-        String appPackageName = context.getPackageName();
-
-        try {
-            context.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + appPackageName)));
-        } catch (ActivityNotFoundException var3) {
-            context.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-        }
-
-    }
 
     public static void showToast(Context pContext, String msg){
         Toast.makeText(pContext, msg, Toast.LENGTH_SHORT).show();
@@ -211,18 +178,6 @@ public class MethodFactory {
 
     public static void animationFade(Activity mActivity){
         mActivity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-    }
-
-    public static void animationAppExit(Activity mActivity){
-        mActivity.overridePendingTransition(0, R.anim.fade_out);
-    }
-
-    public static void animationSlideUp_down(Activity mActivity) {
-        mActivity.overridePendingTransition(R.anim.go_up, R.anim.go_down);
-    }
-
-    public static void animationSlideLeft_Right(Activity mActivity) {
-        mActivity.overridePendingTransition(R.anim.slide_right, R.anim.slide_left);
     }
 
     public static void showDialogue(Context mContext, String title, String msg){

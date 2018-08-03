@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">HajWithIbraheem</string>
+    <string name="app_name">الحج مع راشد</string>
 
     <string name="title_activity_maps">Map</string>
-
 
 
     <string name="API_KEY_google">AIzaSyBcZiRlmOlew2JW93qL0bfT9C2u0RoTUIw</string>
@@ -17,7 +16,7 @@
     <string name="workspace">796da91c-128b-4ad2-90d0-e417c32baf59</string>
 
     <string name="chat">CHAT</string>
-    <string name="input_chat_hint">TYPE YOUR TEXT HERE ...</string>
+    <string name="input_chat_hint">تحدث مع راشد من هنا ...</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -31,5 +30,12 @@
     <string name="pick_place">Pick a place</string>
     <string name="option_get_place">Get place</string>
     <string name="find_me">Find Me!</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

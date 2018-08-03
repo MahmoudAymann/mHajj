@@ -176,6 +176,8 @@ public class MainChatController {
         }
         // update mic status
         setMicActive(mServices.openMic(from));
+        if (mChatActivity != null)
+            mChatActivity.updateMicIcon(true, TAG + "openMic");
         // return mic status
         return isMicActive();
     }
@@ -295,6 +297,7 @@ public class MainChatController {
                 case "iYoutubeEnded":
                 case "iSoundComplete":
                 case "iYoutubeDestroyed":
+                    // TODO: 03/08/2018 Haj
                     // Call displayNext just in case the mix didn't has text needed to be spoken,
                     // Otherwise, The event speak is done is the main caller for this method.
                     if (mix.getMixType() == GlobalVars.mixType.videoLocal
@@ -519,6 +522,7 @@ public class MainChatController {
         return msg;
     }
 
+
     @Nullable
     private dbChatMessage getNextChatMessage(@NonNull String answer){
         if (chatHandler == null){
@@ -543,7 +547,7 @@ public class MainChatController {
         logMessage(TAG, "Lock User input from: " + from);
         canAcceptUserInput = false;
         assert mChatActivity != null;
-            mChatActivity.updateMicIcon(closeMIC("lockUserInput()"), "lockUserInput()");
+            mChatActivity.updateMicIcon(false, "lockUserInput()");
         // Play click sound
         playMicSound(mContext);
     }
@@ -693,10 +697,12 @@ public class MainChatController {
                     url = itemParts[1];
                     // create an appropriate object, pass it to the chat message, set it to the object
                     msg.setContent(new dbImageOnline(from, url, content));
+                    // TODO: 03/08/2018 // ================ Start of Haj Hackathon Code ================== //
 //               /* Will be used to empower the user from asking for help: police, hospital ... etc
                     /*Will be used to get which type of help he asks for, and the Map can guid him/her
                      to the appropriate kind of help*/
-//              }else if (item.contains("<map>")) {
+
+                    //              }else if (item.contains("<map>")) {
                      //Split the line to its parts
 //                    item = "text" + item;
 //                    itemParts = item.split("<map>");
@@ -710,6 +716,9 @@ public class MainChatController {
                     url = itemParts[1];
                     // create an appropriate object, pass it to the chat message, set it to the object
                     msg.setContent(new dbVideoLocal(from, dummyTalkPath, true, url));
+
+                    // TODO: 03/08/2018 // ================  End of Haj Hackathon Code ================= //
+
                 }else if (item.contains("<vdo>")) {
                     // Split the line to its parts
                     item = "text" + item;
@@ -742,26 +751,32 @@ public class MainChatController {
                 // TODO: 02/08/2018 Haj
                 if (getNext() != GlobalVars.nextIs.playSound) // don't change the pointer reference if it refers to sound file
                     // set the next pointer, points to new item
+                {
                     setNext(GlobalVars.nextIs.newItem);
+                }
                 else {
 //                  set the next pointer, points to new item
                     setNext(GlobalVars.nextIs.newItem);
                 }
             }
             return list;
+
         }
 
         private boolean checkIfCanAddFun(@Nullable String intentName) {
+            // TODO: 02/08/2018 Haj
+            return true;
+
             // Don't make any processing if the you don't have watson intent.
             // if watson intent is null, then the visited node on watson conversion
             // server is "any thing else", so you didn't get any node name.
-            if (intentName == null) return false;
+            /*if (intentName == null) return false;
             logMessage(TAG + "intentName", intentName);
             if (intentName.toLowerCase().startsWith("ques")|| intentName.toLowerCase().startsWith("web")){
                 return true;
             }else {
                 return false;
-            }
+            }*/
         }
 
         @Nullable
@@ -879,10 +894,10 @@ public class MainChatController {
                     currentMsg.setNext(getNext());
                     // return the new message
                     return currentMsg;
+                // TODO: 03/08/2018 // ================  End of Haj Hackathon Code ================== //
                 case playSound:
                     // get the first item in list
                     currentMsg = list.get(0);
-                    // TODO: 02/08/2018 Haj
                     setNext(GlobalVars.nextIs.none);
                     list.remove(0);
                     /*
@@ -962,6 +977,7 @@ public class MainChatController {
         }
     }
 
+    // TODO: 03/08/2018 // ================  End of Haj Hackathon Code ================= //
     private Location getCurrentLocation() {
         if (mServices == null){
             logMessage(TAG, "getCurrentLocation() + mServices is null");
@@ -969,4 +985,5 @@ public class MainChatController {
         }
         return mServices.getCurrentLocation();
     }
+    // TODO: 03/08/2018 // ================ Start of Haj Hackathon Code ================== //
 }

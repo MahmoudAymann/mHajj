@@ -131,14 +131,6 @@ public class Services {
                 new IntentFilter(initIntent));
     }
 
-    public Location getCurrentLocation(){
-        if (mapController == null){
-            logMessage(TAG, "getCurrentLocation -> mMapController is null");
-            return null;
-        }
-        return mapController.getCurrentLocation();
-    }
-
     private void handleInternet(String from) {
         myNetwork.handleInternet(from);
     }
@@ -157,7 +149,7 @@ public class Services {
         }
         return isMicrophoneActive;
     }
-    
+
     public boolean closeMic (String from){
         logMessage(TAG, "stopping mic, TAG: " + from);
         if (stt == null){
@@ -208,6 +200,16 @@ public class Services {
         tts.stopSpeaking();
     }
 
+    // TODO: 03/08/2018 // ================ Start of Haj Hackathon Code ================== //
+
+    public Location getCurrentLocation(){
+        if (mapController == null){
+            logMessage(TAG, "getCurrentLocation -> mMapController is null");
+            return null;
+        }
+        return mapController.getCurrentLocation();
+    }
+
     // =========== Sound Area =========== //
     public void playSound(String soundURL){
         if (mySoundPlayer == null){
@@ -232,6 +234,8 @@ public class Services {
         }
         mySoundPlayer.killMediaPlayer();
     }
+    // TODO: 03/08/2018 // ================  End of Haj Hackathon Code ================== //
+
 
 
     public void askWatson(@NonNull String question){

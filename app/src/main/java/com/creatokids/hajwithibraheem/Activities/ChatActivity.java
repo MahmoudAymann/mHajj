@@ -17,6 +17,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -43,7 +44,7 @@ import static com.creatokids.hajwithibraheem.Global.MethodFactory.showToast;
 import static com.creatokids.hajwithibraheem.Services.STT.SpeechAPI.SPECCH_API_INTENT;
 
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends DrawerActivity {
 
     @Nullable
     private Fragment myFragment;
@@ -54,13 +55,16 @@ public class ChatActivity extends AppCompatActivity {
     @Nullable
     @BindView(R.id.et_chat_input_text)
     EditText chatInputText;
+    @Nullable
+    @BindView(R.id.btn_kill_all)
+    ImageView kill;
 
     @Nullable
     @BindView(R.id.iv_btn_send)
     ImageView btnSend;
-    @Nullable
-    @BindView(R.id.iv_mic)
-    ImageView ic_mic;
+//    @Nullable
+//    @BindView(R.id.iv_m )
+//    ImageView ic_mic;
 
     // specify the default fragment
     @NonNull
@@ -88,7 +92,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_new_chat);
+        setContentView(R.layout.activity_chat2);
         // bind views
         ButterKnife.bind(this);
         // set contexts
@@ -96,6 +100,10 @@ public class ChatActivity extends AppCompatActivity {
         mActivity = ChatActivity.this;
         // initialize controller layer
         initController("onCreate");
+
+        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+
 
         // set the default main screen to the avatar screen
         DEFAULT_MAIN_FRAGMENT = GlobalVars.mixType.defaultAvatar;
@@ -131,7 +139,7 @@ public class ChatActivity extends AppCompatActivity {
             } catch (Exception e) {
                 logMessage(TAG, e.getLocalizedMessage());
             }
-            updateMicIcon(isApiComplete, "mMessageReceiver");
+//            updateMicIcon(isApiComplete, "mMessageReceiver");
         }
     };
 
@@ -285,19 +293,19 @@ public class ChatActivity extends AppCompatActivity {
         }
         controller.openMIC(TAG + "StartRecording");
         // if mic not active, set it active
-//        updateMicIcon(controller.isMicActive(), "startRecording(): " + from);
+        updateMicIcon(true, "startRecording(): " + from);
         logMessage(TAG + " stt", "**started VoiceRecorder(), From: " + from);
 
     }
 
     public void updateMicIcon(boolean isActive, String from){
         logMessage(TAG, "*_*Updated the mic icon from: " + from + "Value: " + isActive);
-        if (isActive) {
-            ic_mic.setImageDrawable(getResources().getDrawable(R.drawable.ic_mic_on));
-        }
-        else {
-            ic_mic.setImageDrawable(getResources().getDrawable(R.drawable.ic_mic_off));
-        }
+//        if (isActive) {
+//            kill.setImageDrawable(getResources().getDrawable(R.drawable.ic_mic));
+//        }
+//        else {
+//            kill.setImageDrawable(getResources().getDrawable(R.drawable.ic_mic_offf));
+//        }
         logMessage(TAG, "*_*Updated the mic ... ");
     }
 
@@ -309,7 +317,7 @@ public class ChatActivity extends AppCompatActivity {
         }
         controller.closeMIC(TAG + " StopRecording");
         // if mic is active, stop it
-        updateMicIcon(controller.isMicActive(), "stopRecording(): " + from);
+        updateMicIcon(false, "stopRecording(): " + from);
         logMessage(TAG + " stt", "stopped VoiceRecorder(), From: " + from);
     }
 
@@ -325,6 +333,7 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
         controller.refresh();
+        updateMicIcon(true, TAG + " Refresh()");
     }
 
     public void displayDefaultFragment() {
@@ -333,27 +342,13 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
         Current_VIEW_ON_SCREEN = DEFAULT_MAIN_FRAGMENT;
-        controller.refresh();
+        refresh();
     }
 
     public void toggleMainFragment(View view) {
         displayDefaultFragment();
     }
 
-    public void toggleMicState(View view) {
-        if (controller == null){
-            logControllerEqualsNull(TAG + "toggleMicState");
-            return;
-        }
-        // toggle the mic status upon to the current status
-        if (controller.isMicActive()){
-            stopRecording(TAG + "toggleMicState");
-        }else {
-            startRecording(TAG + "toggleMicState");
-        }
-        // Play mic sound
-//        playMicSound(mContext);
-    }
 
     @Override
     public void onBackPressed() {

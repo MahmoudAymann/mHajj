@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="btn_rate_width">50dp</dimen>
-    <dimen name="btn_rate_height">30dp</dimen>
-    <dimen name="btn_yes_no">50dp</dimen>
-</resources>

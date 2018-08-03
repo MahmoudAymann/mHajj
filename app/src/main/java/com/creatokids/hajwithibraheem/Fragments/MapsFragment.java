@@ -50,6 +50,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     View myFragmentView;
 
+    // TODO: 03/08/2018 // ================ Start of Haj Hackathon Code ================== //
+    // All the fragment
+    // TODO: 03/08/2018 // ================  End of Haj Hackathon Code ================== //
+
     private String TAG = getClass().getSimpleName();
 
     Context mContext;
@@ -68,7 +72,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     PlacePicker.IntentBuilder builder;
 
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 

@@ -45,6 +45,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     PlacePicker.IntentBuilder builder;
 
 
+    // TODO: 03/08/2018 // ================ Start of Haj Hackathon Code ================== //
+    // All the Activity
+    // TODO: 03/08/2018 // ================  End of Haj Hackathon Code ================== //
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

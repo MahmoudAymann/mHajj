@@ -7,6 +7,12 @@ import android.media.MediaPlayer;
 import com.creatokids.hajwithibraheem.Global.MethodFactory;
 
 public class SoundPlayer {
+
+    // TODO: 03/08/2018 // ================ Start of Haj Hackathon Code ================== //
+    // All the Class
+    // TODO: 03/08/2018 // ================  End of Haj Hackathon Code ================== //
+
+
     //https://ia601503.us.archive.org/0/items/hifreq_40_1/hifreq_40_1.mp3
     private MediaPlayer mediaPlayer;
     private int playbackPosition = 0;

@@ -27,7 +27,6 @@
         <shape>
             <!--<item android:drawable="@drawable/avatar_boy" />-->
             <!--<solid android:color="#FFFFFFFFFF"/>-->
-            <solid android:drawable="@drawable/avatar_boy"/>
             <stroke android:width="3dp" android:color="#B1BCBE" />
             <corners android:radius="300dp"
                 android:topLeftRadius="0dp"

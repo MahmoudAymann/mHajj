@@ -39,6 +39,12 @@ import static com.creatokids.hajwithibraheem.Global.MethodFactory.logMessage;
 
 public class MapController {
 
+    // TODO: 03/08/2018 // ================ Start of Haj Hackathon Code ================== //
+    // All the Class
+    // TODO: 03/08/2018 // ================  End of Haj Hackathon Code ================== //
+
+
+
     private static final float DEFAULT_ZOOM = 50.2f;
     private Context mContext;
     private FragmentActivity mActivity;
